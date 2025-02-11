@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Calendar, MapPin, Users, Share2, Pencil, Trash2 } from 'lucide-react'
 import Button from '../../components/Button'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -25,6 +25,7 @@ export default function EventDetail() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [editingEvent, setEditingEvent] = useState<Event | null>(null)
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -110,6 +111,7 @@ export default function EventDetail() {
     onSuccess: (data) => {
       toast.success(data.data.message)
       queryClient.invalidateQueries({ queryKey: ['events'] })
+      navigate('/events')
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {

@@ -15,6 +15,8 @@ export default function EventRegistration() {
     queryFn: () => eventAPI.registrationEvent({ email: profile?.email || '' })
   })
 
+  console.log(fetchedEvents)
+
   return (
     <div className='bg-white p-4 rounded-lg shadow mt-4'>
       <div className='flex justify-between items-center mt-6 py-3'>
@@ -34,7 +36,7 @@ export default function EventRegistration() {
               </div>
             )}
             <CardContent>
-              <Link to={`/event/${data.id}`}>
+              <Link to={`/event/${data.event.id}`}>
                 <h2 className='text-lg font-semibold'>{data.event?.title}</h2>
                 <div className='flex items-center gap-2 mt-2 text-gray-600'>
                   <FiCalendar /> {formatDate(data.event?.eventDate)}

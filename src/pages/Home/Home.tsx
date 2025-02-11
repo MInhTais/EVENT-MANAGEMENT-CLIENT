@@ -22,7 +22,7 @@ export default function HomePage() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
 
-  const { profile } = useMyContext()
+  const { profile, isAuthenticated } = useMyContext()
 
   const queryClient = useQueryClient()
 
@@ -122,7 +122,7 @@ export default function HomePage() {
           <h1 className='text-2xl font-semibold'>{isSearching ? 'Kết quả tìm kiếm' : 'Danh sách sự kiện'}</h1>
           <Button
             className='bg-black text-white flex items-center gap-2'
-            onClick={() => (isLoginOpen ? setIsCreateModalOpen(true) : setIsLoginOpen(true))}
+            onClick={() => (isAuthenticated ? setIsCreateModalOpen(true) : setIsLoginOpen(true))}
           >
             <FiPlus /> Thêm mới
           </Button>
